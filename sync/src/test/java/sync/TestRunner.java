@@ -6,14 +6,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
- 
+
+import com.map.model.WebDriverProvider;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
  
 @CucumberOptions(
-		features="src/test/resources/features",
-		glue={"org.cucumber.stepdefs"},
+		features="src/test/resources/features/MapTest.feature",
+		glue={"sync.StepDefination"},
 		format=
 				{"pretty",
 				"html:target/cucumber-reports/cucumber-pretty",
@@ -27,12 +29,12 @@ public class TestRunner {
 	@BeforeClass
 	public void setUP()
 	{
-		System.setProperty("webdriver.chrome.driver", "E:\\software\\jars\\chromedriver.exe");
-		driver = new ChromeDriver();
+		
+		driver = WebDriverProvider.getDriver();
 		testRunner = new TestNGCucumberRunner(TestRunner.class);
 		
 	}
-	@Test(description="login",dataProvider="features")
+	@Test(description="MapTest",dataProvider="features")
 	public void login(CucumberFeatureWrapper cFeature)
 	{
 		testRunner.runCucumber(cFeature.getCucumberFeature());
@@ -45,6 +47,7 @@ public class TestRunner {
 	@AfterClass
 	public void tearDown()
 	{
+		driver.quit();
 		testRunner.finish();
 	}
 }

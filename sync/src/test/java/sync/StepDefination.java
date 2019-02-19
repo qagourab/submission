@@ -2,17 +2,20 @@ package sync;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+
+import com.map.model.WebDriverProvider;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 public class StepDefination {
-	@Given("^Open Application and Enter url$")
-	public void open_Application_and_Enter_url() throws Throwable {
-		TestRunner.driver.get("https://demo.openmrs.org/openmrs/login.htm");
+	@Given("^I am on the home page$")
+	public void i_am_on_the_home_page() throws Throwable {
+		TestRunner.driver.get(WebDriverProvider.getURL());
 	  
 	}
 
-	@When("^enter username$")
+	/*@When("^enter username$")
 	public void enter_username() throws Throwable {
 		TestRunner.driver.findElement(By.id("username")).sendKeys("Admin");
 	}
@@ -28,5 +31,5 @@ public class StepDefination {
 	public void verify_Msg() throws Throwable {
 	   boolean result =  TestRunner.driver.findElement(By.tagName("h4")).getText().contains("Logged");
 	   Assert.assertTrue(result);
-	}
+	}*/
 }

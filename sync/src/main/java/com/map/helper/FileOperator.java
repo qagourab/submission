@@ -18,7 +18,7 @@ public class FileOperator {
 		
 		
 	}
-	public String getPropertyFileValue(String key) {
+	public String getPropertyValue(String key) {
 		Properties prop = new Properties();
 		InputStream input = null;
 
