@@ -1,4 +1,4 @@
-package sync;
+package runner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,13 +14,14 @@ import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
  
 @CucumberOptions(
-		features="src/test/resources/features/MapTest.feature",
-		glue={"sync.StepDefination"},
-		format=
-				{"pretty",
-				"html:target/cucumber-reports/cucumber-pretty",
-				"json:target/cucumber-reports/CucumberTestReport.json",
-				"rerun:target/cucumber-reports/re-run.txt"}
+		features="src/test/resources/features",
+		glue={"stepdefinitions.StepDefination"},
+				format=
+			{"pretty",
+			"html:target/cucumber-reports/cucumber-pretty",
+			"json:target/cucumber-reports/CucumberTestReport.json",
+			"rerun:target/cucumber-reports/re-run.txt"}
+		, tags ={"@web"}
 		)
 public class TestRunner {
 	public static WebDriver driver;
