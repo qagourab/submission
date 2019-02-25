@@ -1,7 +1,6 @@
 package runner;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -15,7 +14,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
  
 @CucumberOptions(
 		features="src/test/resources/features",
-		glue={"stepdefinitions.StepDefination"},
+		glue={"stepdefinations/"},
 				format=
 			{"pretty",
 			"html:target/cucumber-reports/cucumber-pretty",
@@ -32,6 +31,8 @@ public class TestRunner {
 	{
 		
 		driver = WebDriverProvider.getDriver();
+		this.driver.get(WebDriverProvider.getURL());
+
 		testRunner = new TestNGCucumberRunner(TestRunner.class);
 		
 	}
